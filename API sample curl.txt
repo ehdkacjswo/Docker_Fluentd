@@ -1,0 +1,3 @@
+curl -X POST "http://localhost:5000/CreateAccount" -H "Content-Type:application/json" -d "{""ID"":""ehdka"",""PW"":""ehdka""}"
+curl -X POST "http://localhost:5000/Login" -H "Content-Type:application/json" -d "{""ID"":""ehdka"",""PW"":""ehdka""}"
+curl -X POST "http://localhost:5000/RecvMail" -H "Content-Type:application/json" -d "{""ID"":""ehdka"",""AuthToken"":""ehdka"",""MailID"":1}"

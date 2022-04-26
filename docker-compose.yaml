@@ -1,0 +1,32 @@
+version : "3.0"
+services:
+    fluentd_container:
+        image: fluentd
+        build:
+            context: ./fluentd
+        networks:
+            - sample
+        ports:
+            - "24224:24224"
+        volumes:
+            - "./fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+
+    apiserver_container:
+        image: apiserver
+        build:
+            context: ./APIServer
+        networks:
+            - sample
+        ports:
+            - "5000:5000"
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: "localhost:24224"
+                fluentd-async: "true"
+                tag: "docker.log"
+
+networks:
+    sample:
+        driver: bridge
+        external: true
